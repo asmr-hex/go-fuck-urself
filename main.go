@@ -7,6 +7,12 @@ import (
 	"os"
 )
 
+/*
+   ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ
+   (∩｀-´)⊃━☆ﾟ.*･｡ﾟ
+   (∩｀-´)⊃━☆ﾟ.*･｡ﾟ
+*/
+
 func main() {
 	// get filename from cmd args
 	fn := os.Args[1]
