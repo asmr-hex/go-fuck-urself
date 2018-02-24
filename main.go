@@ -46,9 +46,9 @@ func InterpreteProgram(bytes []byte) {
 	jump2end := false
 
 	for _, ch := range bytes {
-		c := string(ch)
+		s := string(ch)
 
-		if c != "]" && jump2end {
+		if s != "]" && jump2end {
 			continue
 		}
 
@@ -56,7 +56,7 @@ func InterpreteProgram(bytes []byte) {
 			loop = append(loop, ch)
 		}
 
-		switch c {
+		switch s {
 		case ">":
 			ptr += 1
 		case "<":
@@ -66,8 +66,14 @@ func InterpreteProgram(bytes []byte) {
 		case ".":
 			fmt.Printf("%s", string(memory[ptr]))
 		case "+":
+			if memory[ptr] == 255 {
+				memory[ptr] = -1
+			}
 			memory[ptr] += 1
 		case "-":
+			if memory[ptr] == 0 {
+				memory[ptr] = 256
+			}
 			memory[ptr] -= 1
 		case "[":
 			if memory[ptr] == 0 {
@@ -76,7 +82,7 @@ func InterpreteProgram(bytes []byte) {
 			}
 
 			looping = true
-			loop = append(loop, ch)
+			loop = append([]byte{}, ch)
 		case "]":
 			if jump2end {
 				jump2end = false
